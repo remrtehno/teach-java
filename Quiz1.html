@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      form {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 600px;
+        width: 100%;
+      }
+
+      .question {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .question p {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      #submitBtn {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      #submitBtn:hover {
+        background-color: #45a049;
+      }
+
+      #modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      #resultsBox {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      #copyBtn {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      #copyBtn:hover {
+        background-color: #45a049;
+      }
+
+      #closeBtn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 100%;
+        cursor: pointer;
+        font-size: 14px;
+        width: 20px;
+        height: 20px;
+      }
+
+      #closeBtn:hover {
+        background-color: #d32f2f;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="quizForm">
+      <div class="question">
+        <p>
+          1) Какие операторы используются для выполнения арифметических операций
+          в Java?
+        </p>
+        <label><input type="radio" name="q1" value="a" /> + - * /</label>
+        <label><input type="radio" name="q1" value="b" /> && !</label>
+        <label><input type="radio" name="q1" value="c" /> == !=</label>
+        <label><input type="radio" name="q1" value="d" /> ++ --</label>
+      </div>
+
+      <div class="question">
+        <p>
+          2) Какой из следующих циклов выполняется хотя бы один раз, даже если
+          условие не истинно?
+        </p>
+        <label><input type="radio" name="q2" value="a" /> for</label>
+        <label><input type="radio" name="q2" value="b" /> while</label>
+        <label><input type="radio" name="q2" value="c" /> do...while</label>
+        <label><input type="radio" name="q2" value="d" /> if...else</label>
+      </div>
+
+      <div class="question">
+        <p>3) Как объявить переменную в Java?</p>
+        <label><input type="radio" name="q3" value="a" /> variable x;</label>
+        <label><input type="radio" name="q3" value="b" /> int x;</label>
+        <label><input type="radio" name="q3" value="c" /> x = 5;</label>
+        <label><input type="radio" name="q3" value="d" /> create x;</label>
+      </div>
+
+      <div class="question">
+        <p>
+          4) Какой оператор используется для сравнения двух значений на
+          равенство в Java?
+        </p>
+        <label><input type="radio" name="q4" value="a" /> ==</label>
+        <label><input type="radio" name="q4" value="b" /> =</label>
+        <label><input type="radio" name="q4" value="c" /> !=</label>
+        <label><input type="radio" name="q4" value="d" /> ===</label>
+      </div>
+
+      <div class="question">
+        <p>
+          5) Какие из следующих типов данных являются примитивными в Java?
+          (Выберите все подходящие варианты)
+        </p>
+        <label><input type="radio" name="q5" value="a" /> String</label>
+        <label><input type="radio" name="q5" value="b" /> int</label>
+        <label><input type="radio" name="q5" value="c" /> float</label>
+        <label><input type="radio" name="q5" value="d" /> Integer</label>
+      </div>
+
+      <div class="question">
+        <p>6) Что такое оператор "&&" в Java?</p>
+        <label
+          ><input type="radio" name="q6" value="a" /> Логическое И (AND)</label
+        >
+        <label
+          ><input type="radio" name="q6" value="b" /> Логическое ИЛИ (OR)</label
+        >
+        <label
+          ><input type="radio" name="q6" value="c" /> Отрицание (NOT)</label
+        >
+        <label><input type="radio" name="q6" value="d" /> Равно (EQUALS)</label>
+      </div>
+
+      <div class="question">
+        <p>7) Как объявить метод в Java?</p>
+        <label
+          ><input type="radio" name="q7" value="a" /> static method myMethod()
+          {}</label
+        >
+        <label
+          ><input type="radio" name="q7" value="b" /> static void myMethod()
+          {}</label
+        >
+        <label
+          ><input type="radio" name="q7" value="c" /> static myMethod void()
+          {}</label
+        >
+        <label
+          ><input type="radio" name="q7" value="d" /> static int myMethod()
+          {}</label
+        >
+      </div>
+
+      <div class="question">
+        <p>
+          8) Какой из следующих операторов используется для инкрементации
+          переменной на 1?
+        </p>
+        <label><input type="radio" name="q8" value="a" /> +</label>
+        <label><input type="radio" name="q8" value="b" /> ++</label>
+        <label><input type="radio" name="q8" value="c" /> +=</label>
+        <label><input type="radio" name="q8" value="d" /> --</label>
+      </div>
+
+      <div class="question">
+        <p>
+          9) Какой примитивный тип данных используется для хранения десятичных
+          чисел в Java?
+        </p>
+        <label><input type="radio" name="q9" value="a" /> int</label>
+        <label><input type="radio" name="q9" value="b" /> double</label>
+        <label><input type="radio" name="q9" value="c" /> float</label>
+        <label><input type="radio" name="q9" value="d" /> char</label>
+      </div>
+
+      <div class="question">
+        <p>10) Что делает оператор "!=" в Java?</p>
+        <label
+          ><input type="radio" name="q10" value="a" /> Проверяет на
+          равенство</label
+        >
+        <label
+          ><input type="radio" name="q10" value="b" /> Проверяет на
+          неравенство</label
+        >
+        <label
+          ><input type="radio" name="q10" value="c" /> Инвертирует
+          значение</label
+        >
+        <label
+          ><input type="radio" name="q10" value="d" /> Выполняет побитовое
+          исключающее ИЛИ</label
+        >
+      </div>
+
+      <div class="question">
+        <p>
+          11) Какие из следующих операторов используются для создания условий в
+          Java? (Выберите все подходящие варианты)
+        </p>
+        <label><input type="radio" name="q11" value="a" /> if</label>
+        <label><input type="radio" name="q11" value="b" /> switch</label>
+        <label><input type="radio" name="q11" value="c" /> for</label>
+        <label><input type="radio" name="q11" value="d" /> while</label>
+      </div>
+
+      <div class="question">
+        <p>12) Какова разница между операторами "==" и "===" в Java?</p>
+        <label
+          ><input type="radio" name="q12" value="a" /> Не существует.</label
+        >
+        <label
+          ><input type="radio" name="q12" value="b" /> "===" сравнивает значения
+          и типы, "==" сравнивает только значения.</label
+        >
+        <label
+          ><input type="radio" name="q12" value="c" /> "==" сравнивает значения
+          и типы, "===" сравнивает только значения.</label
+        >
+        <label
+          ><input type="radio" name="q12" value="d" /> "===" используется только
+          для строковых данных.</label
+        >
+      </div>
+
+      <div class="question">
+        <p>
+          13) Какие из следующих операторов сравнения являются логическими
+          операторами в Java? (Выберите все подходящие варианты)
+        </p>
+        <label><input type="radio" name="q13" value="a" /> <=</label>
+        <label><input type="radio" name="q13" value="b" /> &&</label>
+        <label><input type="radio" name="q13" value="c" /> ==</label>
+        <label><input type="radio" name="q13" value="d" /> ></label>
+      </div>
+
+      <div class="question">
+        <p>
+          14) Какой цикл используется, когда количество итераций известно
+          заранее?
+        </p>
+        <label><input type="radio" name="q14" value="a" /> for</label>
+        <label><input type="radio" name="q14" value="b" /> do...while</label>
+        <label><input type="radio" name="q14" value="c" /> switch</label>
+        <label><input type="radio" name="q14" value="d" /> if...else</label>
+      </div>
+
+      <div class="question">
+        <p>15) Что делает оператор "&&" в Java?</p>
+        <label
+          ><input type="radio" name="q15" value="a" /> Логическое И (AND)</label
+        >
+        <label
+          ><input type="radio" name="q15" value="b" /> Логическое ИЛИ
+          (OR)</label
+        >
+        <label
+          ><input type="radio" name="q15" value="c" /> Отрицание (NOT)</label
+        >
+        <label
+          ><input type="radio" name="q15" value="d" /> Равно (EQUALS)</label
+        >
+      </div>
+
+      <div class="question">
+        <p>
+          16) Какой оператор используется для декрементации переменной на 1?
+          (-1)
+        </p>
+        <label><input type="radio" name="q16" value="a" /> -</label>
+        <label><input type="radio" name="q16" value="b" /> ++</label>
+        <label><input type="radio" name="q16" value="c" /> --</label>
+        <label><input type="radio" name="q16" value="d" /> *=</label>
+      </div>
+      <!-- Question 17 -->
+      <div class="question">
+        <p>
+          17) Какой тип данных используется для хранения символов в Java? ('a')
+        </p>
+        <label><input type="radio" name="q17" value="a" /> int</label>
+        <label><input type="radio" name="q17" value="b" /> double</label>
+        <label><input type="radio" name="q17" value="c" /> char</label>
+        <label><input type="radio" name="q17" value="d" /> boolean</label>
+      </div>
+
+      <!-- Question 18 -->
+      <div class="question">
+        <p>
+          18) Какие операторы используются для логического сравнения в Java?
+          (Выберите все подходящие варианты)
+        </p>
+        <label><input type="radio" name="q18" value="a" /> ==</label>
+        <label><input type="radio" name="q18" value="b" /> !=</label>
+        <label><input type="radio" name="q18" value="c" /> >=</label>
+        <label><input type="radio" name="q18" value="d" /> &&</label>
+        <label><input type="radio" name="q18" value="e" /> ||</label>
+      </div>
+
+      <!-- Question 19 -->
+      <div class="question">
+        <p>
+          19) Как вызвать метод (функция), если он определен в том же классе?
+        </p>
+        <label><input type="radio" name="q19" value="a" /> methodName();</label>
+        <label
+          ><input type="radio" name="q19" value="b" /> call methodName;</label
+        >
+        <label
+          ><input type="radio" name="q19" value="c" /> invoke methodName;</label
+        >
+        <label
+          ><input type="radio" name="q19" value="d" /> this.methodName();</label
+        >
+      </div>
+
+      <!-- Question 20 -->
+      <div class="question">
+        <p>20) Как создать бесконечный цикл в Java?</p>
+        <label><input type="radio" name="q20" value="a" /> for (;;) {}</label>
+        <label
+          ><input type="radio" name="q20" value="b" /> while (true) {}</label
+        >
+        <label
+          ><input type="radio" name="q20" value="c" /> do {} while
+          (true);</label
+        >
+        <label
+          ><input type="radio" name="q20" value="d" /> repeat {} until
+          (false);</label
+        >
+      </div>
+
+      <!-- Question 21 -->
+      <div class="question">
+        <p>21) Как завершить выполнение программы в Java?</p>
+        <label><input type="radio" name="q21" value="a" /> exit()</label>
+        <label><input type="radio" name="q21" value="b" /> break</label>
+        <label><input type="radio" name="q21" value="c" /> return</label>
+        <label><input type="radio" name="q21" value="d" /> finish()</label>
+      </div>
+
+      <button type="button" id="submitBtn" onclick="submitQuiz()">
+        Submit
+      </button>
+    </form>
+
+    <div id="modal">
+      <div id="resultsBox">
+        <button type="button" id="closeBtn" onclick="closeModal()">X</button>
+        <h2>Selected Answers</h2>
+        <div id="answers"></div>
+        <button type="button" id="copyBtn" onclick="copyToClipboard()">
+          Copy Answers
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function submitQuiz() {
+        const form = document.getElementById("quizForm");
+        const formData = new FormData(form);
+        let results = '<div id="answers">';
+
+        for (const pair of formData.entries()) {
+          results += `<p>Question ${pair[0]}: ${pair[1]}</p>`;
+        }
+
+        results += "</div>";
+        document.getElementById("answers").innerHTML = results;
+        document.getElementById("modal").style.display = "flex";
+        document.getElementById("copyBtn").innerText = "Copy Answers";
+      }
+
+      function closeModal() {
+        document.getElementById("modal").style.display = "none";
+      }
+
+      function copyToClipboard() {
+        const resultsText = document.getElementById("answers").innerText;
+        const textarea = document.createElement("textarea");
+        textarea.value = resultsText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        document.getElementById("copyBtn").innerText = "Copied!";
+      }
+    </script>
+  </body>
+</html>
